@@ -1,1 +1,1 @@
-{"name":"shayan-digital-universe","private":true,"version":"1.0.0","type":"module","scripts":{"dev":"vite","build":"vite build","preview":"vite preview"},"dependencies":{"@studio-freight/lenis":"^1.0.42","gsap":"^3.12.5","three":"^0.164.1"},"devDependencies":{"vite":"^5.4.10"}}
+{"name":"shayan-portfolio","private":true,"version":"2.0.0","type":"module","scripts":{"dev":"vite","build":"vite build","preview":"vite preview"},"devDependencies":{"vite":"^5.4.21"}}
