@@ -1,8 +1,7 @@
 export const projects=[
- {id:'01',title:'Kōhī',type:'Digital hospitality',year:'2025',image:'/projects-1.jpg',note:'A quiet commerce world designed around ritual, warmth, and the pause before the first sip.'},
- {id:'02',title:'Harvest',type:'Product system',year:'2025',image:'/projects-2.jpg',note:'Food made immediate through bold hierarchy, kinetic color, and appetite-led navigation.'},
- {id:'03',title:'Nocturne',type:'Restaurant experience',year:'2025',image:'/projects-3.jpg',note:'A reservation experience paced like an evening: anticipation, atmosphere, arrival.'},
- {id:'04',title:'Cut / 04',type:'Identity platform',year:'2025',image:'/projects-4.jpg',note:'A sharp digital identity translating local craft into confident contemporary culture.'},
- {id:'05',title:'Monolith',type:'Built environment',year:'2025',image:'/projects-5.jpg',note:'Technical authority expressed through structure, scale, and uncompromising clarity.'}
+ {name:'aethel-db',type:'Distributed systems · Java',description:'A key-value database built without external frameworks, exploring storage engines, networking, replication, and consensus.',href:'https://github.com/ShayanBytes/aethel-db'},
+ {name:'OmniTrace',type:'Developer tooling · TypeScript / Python',description:'A full-stack tracing project that joins a TypeScript interface with a Python backend.',href:'https://github.com/ShayanBytes/OmniTrace'},
+ {name:'Petuk',type:'Product engineering · TypeScript',description:'A modern TypeScript product built with a Vite-based frontend architecture.',href:'https://github.com/ShayanBytes/Petuk'},
+ {name:'ClipperX',type:'Python tooling',description:'A packaged Python project with documentation, source isolation, and automated tests.',href:'https://github.com/ShayanBytes/ClipperX'}
 ];
-export const routes=['home','work','about','laboratory','archive','contact'];
+export const routes=['enter','home','work','about','contact'];

@@ -1,32 +1,33 @@
-# Shayan — Digital Universe
+# Shayan Mondal — Portfolio
 
-An immersive multi-route portfolio built as a connected digital world rather than a conventional scrolling site.
+A route-based developer portfolio built from ShayanBytes' real GitHub work.
 
-## Environments
+## Experience
 
-- `/home` — particle cosmos and kinetic manifesto
-- `/work` — cinematic project worlds
-- `/about` — interactive ASCII identity portrait
-- `/laboratory` — live GPU experiments
-- `/archive` — perspective-driven experience corridor
-- `/contact` — open signal
+- `/enter` — a living, cursor-reactive ASCII organism rendered in real time
+- `/home` — concise introduction
+- `/work` — verified repositories, without mockup imagery
+- `/about` — technical profile
+- `/contact` — direct contact route
 
-## Stack
+## Principles
 
-Vite · Three.js · GLSL · GSAP · Lenis · semantic HTML · responsive CSS
+- Clear navigation over spectacle
+- No photographs or project mockup images
+- No WebGL, Three.js, animation frameworks, or oversized portal controls
+- Accessible reduced-motion behavior
+- Responsive from mobile to large desktop
+- Approximately 3.6 KB of production JavaScript when gzipped
 
-## Run
+## Development
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Production
+## Build
 
 ```bash
 npm run build
-npm run preview
 ```
-
-The renderer uses a single shared WebGL context, capped device pixel ratio, reduced particle count on mobile, visibility-aware rendering, reduced-motion fallbacks, and route-aware scene reuse.
