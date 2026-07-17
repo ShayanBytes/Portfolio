@@ -5,7 +5,8 @@ const app=document.querySelector('#app');let route;let organism;
 function mount(){
   route=resolve();document.body.dataset.route=route;app.innerHTML=render(route);
   organism?.destroy();organism=null;
-  if(route==='enter')organism=new AsciiOrganism(document.querySelector('#ascii-world'));
+  const canvas=document.querySelector('#ascii-world');
+  if(canvas)organism=new AsciiOrganism(canvas,route);
   requestAnimationFrame(()=>document.body.classList.add('ready'));
   app.focus?.();
 }
