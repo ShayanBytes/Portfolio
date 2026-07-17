@@ -1,473 +1,128 @@
-<!DOCTYPE html>
-   <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="Shayan Mondal — full-stack developer creating expressive, useful digital products from West Bengal, India.">
+  <meta name="theme-color" content="#f1efe8">
+  <title>Shayan Mondal — Creative Developer</title>
+  <link rel="icon" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="site-header" data-header>
+    <a class="wordmark" href="#top" aria-label="Shayan Mondal, home"><span>SM</span><span class="wordmark__label">Shayan Mondal</span></a>
+    <nav aria-label="Primary navigation">
+      <a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </nav>
+    <span class="availability"><i></i>Available for select projects</span>
+  </header>
 
-       <!--=============== FAVICON ===============------->
-      
-      <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero__meta eyebrow reveal"><span>Creative developer</span><span>Bongaon · West Bengal</span></div>
+      <h1 id="hero-title" class="hero__title" aria-label="I make ideas feel inevitable.">
+        <span class="title-line title-line--serif">I make ideas</span>
+        <span class="title-line title-line--sans">feel <em>inevitable.</em></span>
+      </h1>
+      <div class="hero__footer reveal">
+        <p>Full-stack development, product thinking, and visual systems—built into digital experiences with clarity and character.</p>
+        <a class="circle-link magnetic" href="#work" aria-label="Explore selected work"><span>Explore</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15m0 0 6-6m-6 6-6-6"/></svg></a>
+      </div>
+      <div class="hero__index mono" aria-hidden="true">PORTFOLIO / 2026</div>
+    </section>
 
-      <!--=============== REMIXICONS ===============-->
-      <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css"
+    <section class="manifesto" aria-label="Design philosophy">
+      <p class="manifesto__copy" data-split>Not decoration. Not noise. I design the logic, rhythm, and details that turn a useful interface into an experience worth remembering.</p>
+    </section>
 
-      <!--=============== CSS ===============-->
+    <section class="work" id="work" aria-labelledby="work-title">
+      <header class="section-heading reveal">
+        <p class="eyebrow"><span>01</span> Selected experiments</p>
+        <h2 id="work-title">Five studies in<br><i>digital atmosphere.</i></h2>
+      </header>
+      <div class="project-list">
+        <article class="project project--wide reveal" data-project>
+          <a href="projects-1.jpg" target="_blank" rel="noreferrer" aria-label="View Coffee website concept image">
+            <figure><img src="projects-1.jpg" alt="Coffee website interface concept" width="640" height="400" loading="lazy"><span class="project__view">View study ↗</span></figure>
+            <div class="project__info"><span class="mono">01 / Web direction</span><h3>Coffee, considered slowly.</h3><p>An atmospheric commerce concept balancing warmth, product detail, and editorial restraint.</p></div>
+          </a>
+        </article>
+        <article class="project project--offset reveal" data-project>
+          <a href="projects-2.jpg" target="_blank" rel="noreferrer" aria-label="View food product design concept image">
+            <figure><img src="projects-2.jpg" alt="Food product interface concept" width="640" height="400" loading="lazy"><span class="project__view">View study ↗</span></figure>
+            <div class="project__info"><span class="mono">02 / Product design</span><h3>Food in full colour.</h3><p>A direct, appetising product language designed around visual confidence and quick decisions.</p></div>
+          </a>
+        </article>
+        <article class="project project--portrait reveal" data-project>
+          <a href="projects-3.jpg" target="_blank" rel="noreferrer" aria-label="View restaurant landing page concept image">
+            <figure><img src="projects-3.jpg" alt="Restaurant landing page concept" width="640" height="400" loading="lazy"><span class="project__view">View study ↗</span></figure>
+            <div class="project__info"><span class="mono">03 / Hospitality</span><h3>A table before arrival.</h3><p>A restaurant experience where pacing and appetite begin before the first reservation.</p></div>
+          </a>
+        </article>
+        <article class="project project--offset reveal" data-project>
+          <a href="projects-4.jpg" target="_blank" rel="noreferrer" aria-label="View barbershop website concept image">
+            <figure><img src="projects-4.jpg" alt="Barbershop website interface concept" width="640" height="400" loading="lazy"><span class="project__view">View study ↗</span></figure>
+            <div class="project__info"><span class="mono">04 / Identity system</span><h3>Cut with character.</h3><p>A sharp service experience translating craft, confidence, and local identity into the browser.</p></div>
+          </a>
+        </article>
+        <article class="project project--wide reveal" data-project>
+          <a href="projects-5.jpg" target="_blank" rel="noreferrer" aria-label="View construction landing page concept image">
+            <figure><img src="projects-5.jpg" alt="Construction company landing page concept" width="640" height="400" loading="lazy"><span class="project__view">View study ↗</span></figure>
+            <div class="project__info"><span class="mono">05 / Corporate web</span><h3>Built on certainty.</h3><p>A structural, credible landing page turning technical capability into a clear visual promise.</p></div>
+          </a>
+        </article>
+      </div>
+    </section>
 
-      <link rel="stylesheet" href="styles.css">
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="about__portrait reveal">
+        <div class="portrait-frame"><img src="background-replacer-result.png" alt="Portrait of Shayan Mondal" width="900" height="1200" loading="lazy"></div>
+        <span class="mono">The person behind the pixels</span>
+      </div>
+      <div class="about__content">
+        <p class="eyebrow reveal"><span>02</span> About</p>
+        <h2 id="about-title" class="reveal">Curious by nature.<br><i>Exacting by choice.</i></h2>
+        <p class="about__lead reveal">I’m Shayan, a computer science student and full-stack developer from Bongaon, India. I move between code, design, AI, and product strategy to make ideas tangible.</p>
+        <p class="about__body reveal">My approach is simple: understand the real problem, remove what doesn’t serve it, then make every remaining detail feel intentional.</p>
+        <div class="capabilities reveal">
+          <h3 class="mono">What I bring</h3>
+          <ul><li><span>01</span>Full-stack development</li><li><span>02</span>Interface & product design</li><li><span>03</span>AI/ML exploration</li><li><span>04</span>Technical direction</li></ul>
+        </div>
+      </div>
+    </section>
 
-      <title>Responsive portfolio website - Bedimcode</title>
-   </head>
-   <body>
-      <!--==================== NAV ====================-->
-      <nav class="nav">
-          <ul class="nav__list ">
+    <section class="experience" aria-labelledby="experience-title">
+      <header class="section-heading reveal"><p class="eyebrow"><span>03</span> Trajectory</p><h2 id="experience-title">Learning by<br><i>making.</i></h2></header>
+      <ol class="timeline">
+        <li class="reveal"><span class="timeline__year mono">Now</span><div><h3>Shayan Ventures</h3><p>Founder / CEO</p></div><span class="timeline__note">Building products, teams, and conviction.</span></li>
+        <li class="reveal"><span class="timeline__year mono">02</span><div><h3>ShayanBytes</h3><p>AI/ML Product Manager</p></div><span class="timeline__note">Connecting emerging technology to human needs.</span></li>
+        <li class="reveal"><span class="timeline__year mono">01</span><div><h3>Adobe</h3><p>Web Developer</p></div><span class="timeline__note">Developing craft across interfaces and systems.</span></li>
+      </ol>
+    </section>
 
-            <li>
-              <a href="#home" title="Home" class="nav__link active-link">
-                <i class="ri-home-3-fill"></i>
-              </a>
-            </li>
-            
-            <li>
-              <a href="#projects" title="Projects" class="nav__link ">
-                <i class="ri-folder-5-line"></i>
-              </a>
-            </li>
-            
-            <li>
-              <a href="#services" title="Services" class="nav__link ">
-                <i class="ri-file-edit-line"></i>
-              </a>
-            </li>
-            
-            <li>
-              <a href="#experience" title="Experience" class="nav__link ">
-                <i class="ri-honour-line"></i>
-              </a>
-            </li>
-            
-            <li>
-              <a href="#contact" title="Contact" class="nav__link ">
-                <i class="ri-send-plane-line"></i>
-              </a>
-            </li>
-            
-          </ul>
-      </nav>
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <p class="eyebrow reveal"><span>04</span> Start a conversation</p>
+      <h2 id="contact-title" class="reveal">Have an idea<br>with <i>potential?</i></h2>
+      <div class="contact__row reveal">
+        <a class="contact__cta magnetic" href="mailto:sayanroman9090@gmail.com"><span>Tell me about it</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg></a>
+        <p>For collaborations, product ideas,<br>or an interesting conversation.</p>
+      </div>
+    </section>
+  </main>
 
-      <!--==================== MAIN ====================-->
-      <main class="main">
-         <!--==================== HOME ====================-->
-         <section class="home section" id="home">
-            <div class="home__container container grid">
-               <!--===== PERFIL =====-->
-              <div class="perfil">
-                <span class="background__text3">
-
-                  INNOVATION DRIVES PROGRESS, EMPOWERING US TO CONNECT, CREATE, AND TRANSFORM. WITH EVERY BREAKTHROUGH, WE UNVEIL A NEW HORIZON, PUSHING THE LIMITS OF WHAT WAS ONCE IMPOSSIBLE. THE FUTURE IS HERE, AND IT IS POWERED BY TECHNOLOGY, FUELING DREAMS AND PAVING THE WAY FOR LIMITLESS OPPORTUNITY. FROM ARTIFICIAL INTELLIGENCE TO QUANTUM COMPUTING, OUR WORLD IS BECOMING SMARTER, FASTER, AND MORE CONNECTED. EVERY LINE OF CODE, EVERY DEVICE, IS AN ECHO OF HUMAN INGENUITY AND VISION. TECHNOLOGY IS NOT JUST ABOUT TOOLS; IT IS ABOUT CHANGING THE VERY FABRIC OF OUR LIVES, AND THE POTENTIAL IS LIMITLESS.</span>
-                <img src="background-replacer-result.png" alt="image" class="perfil__img">
-                <div class="perfil__data">
-                  <h1 class="perfil__name" >Shayan Mondal</h1>
-                  <div class="perfil__buttons">
-                   <a href="#projects" class="button">Projects</a>
-                   <a href="#services" class="button button__black">Services</a>
-                  
-                   
-                  </div>
-                </div>
-                
-              </div>
-
-
-               <!--===== INFO =====-->
-               
-              <div class="info">
-               <div class="info__data">
-                 <div class"=info__circle"></div
-                     <h1 class="info__name">Shayan Mondal</h1>
-               </div>
-               <div class="info__image">
-                     <span class="background__text">Shayan <br>Ventures</span>
-                     <img src="IMG_20250206_220022.png"alt="image"class="info__img">
-               </div>
-                   <p class="info__description">
-                     Passionate about creting real world website with stunnng features
-                   </p>
-               <a href=""download target="_blank" class="button button__black">Download CV</a>
-              </div>
-
-
-               <!--===== ABOUT =====-->
-               <div class="about">
-                <h3 class="about__name">
-                 Shayan Mondal - <b>FullStack Web Developer</b>
-                </h3>
-                <p class="about__description">
-                 I am from Bongaon ,a small town in WestBengal INDIA
-                 I am student of CS major ,Ihave experience in Web Development
-                 and AI & ML.
-                 
-                </p>
-          
-               <div class="about__social">
-               <a href="https://www.linkedin.com/in/shayan-mondal-1338bb340/" target="_blank"class="about__link">
-                 <i class="ri-linkedin-box-line"></i>
-                </a>
-                               <a href="https://github.com/ShayanBytes" target="_blank" class="about__link">
-                                <i class="ri-github-line"></i>
-
-               </a>
-                              <a href="https://x.com/fox_xrr?t=BqDTnxnvdofeoL_FIqnygA&s=09" target="_blank" class="about__link">
-                     <i class="ri-twitter-x-line"></i>
-               </a>
-               </div>
-               <div class="about__image">
-                <span class="background__text2">Shayan <br>Ventures</span>
-                <img src="background-replacer-result.png "alt="image" class="about__img">
-               </div>
-               <p class="about__note">
-                Hey! you can contact me on Twitter or you can email me!!
-               </p>
-              <a href="#contact" class="button">Contact Me</a>
-               </div>
-
-
-               <!--===== SKILLS =====-->
-               <div class="skills">
-                <h2 class="skills__title">Skills</h2>
-                <div class="skills__items">
-                  <img src="skills-html.svg" alt="image" class="skills__item">
-                  <img src="skills-css.svg" alt="image" class="skills__item">
-                  <img src="skills-javascript.svg" alt="image" class="skills__item">
-                  <img src="skills-react.svg" alt="image" class="skills__item">
-                  <img src="skills-git.svg" alt="image" class="skills__item">
-                  <img src="skills-github.svg" alt="image" class="skills__item">
-                  <img src="skills-sass.svg" alt="image" class="skills__item">
-                  <img src="skills-tailwind-css.svg" alt="image" class="skills__item">
-                  <img src="skills-figma.svg" alt="image" class="skills__item">
-                  <img src="skills-photoshop.svg" alt="image" class="skills__item">
-                </div>
-                <p class="skills_description">
-                 Visit the projects section to see <thead>
-                 my works with these technologies.
-                 </thead>
-                </p>
-               </div>
-               
-            </div>
-         </section>
-
-         <!--==================== PROJECTS ====================-->
-         <section class="projects section" id="projects">
-            <h2 class="section__title"> RECENT PROJECTS</h2>
-            
-            <div class="projects__container container grid">
-             
-             
-             <article class="projects__card">
-              <a href="#" target="_blank" class="projects__image">
-               <img src="projects-1.jpg" alt="image"class="projects__img">
-              </a>
-              <div class="projects__data">
-               <h3 class="projects__name">Coffie Website</h3>
-               
-               <p class="projects__description">
-                Shot description of the projects that
-                was carried out in this portfolio. 
-               </p>
-               
-               <div class="projects__skills">
-                <img src="skills-react.svg" alt="image"class="projects__skill">
-                <img src="skills-sass.svg" alt="image"class="projects__skill">
-                <img src="skills-tailwind-css.svg" alt="image"class="projects__skill">
-               </div>
-               
-               <a href="#" target="_blank" class="projects__button">
-                <i class="ri-link"></i>
-                <span> Visit Project</span>
-               </a>
-                
-              </div>
-              
-              </article>
-              
-                <article class="projects__card">
-   <a href="#" target="_blank" class="projects__image">
-    <img src="projects-2.jpg" alt="image" class="projects__img">
-   </a>
-   <div class="projects__data">
-    <h3 class="projects__name">Food Product Design</h3>
-
-    <p class="projects__description">
-     Shot description of the projects that
-     was carried out in this portfolio.
-    </p>
-
-    <div class="projects__skills">
-     <img src="skills-figma.svg" alt="image" class="projects__skill">
-     <img src="skills-photoshop.svg" alt="image" class="projects__skill">
-     
-    </div>
-
-    <a href="#" target="_blank" class="projects__button">
-     <i class="ri-link"></i>
-     <span> Visit Project</span>
-    </a>
-
-   </div>
-
-  </article>
-  
-    <article class="projects__card">
-   <a href="#" target="_blank" class="projects__image">
-    <img src="projects-3.jpg" alt="image" class="projects__img">
-   </a>
-   <div class="projects__data">
-    <h3 class="projects__name">Restaurant Landing Page</h3>
-
-    <p class="projects__description">
-     Shot description of the projects that
-     was carried out in this portfolio.
-    </p>
-
-    <div class="projects__skills">
-     <img src="skills-html.svg" alt="image" class="projects__skill">
-     <img src="skills-css.svg" alt="image" class="projects__skill">
-     <img src="skills-javascript.svg" alt="image" class="projects__skill">
-    </div>
-
-    <a href="#" target="_blank" class="projects__button">
-     <i class="ri-link"></i>
-     <span> Visit Project</span>
-    </a>
-
-   </div>
-
-  </article>
-
-   <article class="projects__card">
-   <a href="#" target="_blank" class="projects__image">
-    <img src="projects-4.jpg" alt="image" class="projects__img">
-   </a>
-   <div class="projects__data">
-    <h3 class="projects__name">Barbershop Website</h3>
-
-    <p class="projects__description">
-     Shot description of the projects that
-     was carried out in this portfolio.
-    </p>
-
-    <div class="projects__skills">
-     <img src="skills-react.svg" alt="image" class="projects__skill">
-     <img src="skills-sass.svg" alt="image" class="projects__skill">
-     <img src="skills-tailwind-css.svg" alt="image" class="projects__skill">
-    </div>
-
-    <a href="#" target="_blank" class="projects__button">
-     <i class="ri-link"></i>
-     <span> Visit Project</span>
-    </a>
-
-   </div>
-
-  </article>
-  
-    </article>
-
-  <article class="projects__card">
-   <a href="#" target="_blank" class="projects__image">
-    <img src="projects-5.jpg" alt="image" class="projects__img">
-   </a>
-   <div class="projects__data">
-    <h3 class="projects__name">Construction Landing Page</h3>
-
-    <p class="projects__description">
-     Shot description of the projects that
-     was carried out in this portfolio.
-    </p>
-
-    <div class="projects__skills">
-     <img src="skills-html.svg" alt="image" class="projects__skill">
-     <img src="skills-css.svg" alt="image" class="projects__skill">
-     <img src="skills-javascript.svg" alt="image" class="projects__skill">
-    </div>
-
-    <a href="#" target="_blank" class="projects__button">
-     <i class="ri-link"></i>
-     <span> Visit Project</span>
-    </a>
-
-   </div>
-
-  </article>
-              
-            </div>
-         </section>
-
-         <!--==================== SERVICES ====================-->
-         <section class="services section" id="services">
-           <h2 class="section__title">SERVICES I OFFER</h2>
-           
-           <div class="services__container container grid">
-               <article class="services__card">
-                  <div class="services__icon">
-                   <div class="services__circle"></div>
-                   <i class="ri-code-box-line"></i>
-                  </div>
-                   <h3 class="services__name">Web Development</h3>
-                   <p  class="services__description">
-                      Short descriptionof the service offerd
-                      to users to obtain a personalized projects.
-                    
-                   </p>
-                  
-                
-               </article>
-                        <article class="services__card">
-          <div class="services__icon">
-           <div class="services__circle"></div>
-<i class="ri-mark-pen-line"></i>
-          </div>
-          <h3 class="services__name">Web Design</h3>
-          <p class="services__description">
-           Short descriptionof the service offerd
-           to users to obtain a personalized projects.
-
-          </p>
-
-
-         </article>
-                  <article class="services__card">
-          <div class="services__icon">
-           <div class="services__circle"></div>
-             <i class="ri-seo-line"></i>
-          </div>
-          <h3 class="services__name">Seo (Web Pages)</h3>
-          <p class="services__description">
-           Short descriptionof the service offerd
-           to users to obtain a personalized projects.
-
-          </p>
-
-
-         </article>
-           </div>
-           
-           
-           
-         </section>
-
-         <!--==================== EXPERIENCE ====================-->
-         <section class="experience section" id="experience">
-              <h2 class="section__title">EXPERIENCE</h2>
-                  <div class="experience__container container grid">
-                     <article class="experience__card">
-                         <h2 class="experience__company">Adobe</h2>
-                         
-                         <div class="experience__data">
-                             <h3 class="experience__profession">Web Developer</h3>
-                             <span class="experience__date"> 04/12/25</span>
-                             <p class="experience__description">
-                              Short description about experience of Shayan Mondal
-                             </p>
-                         </div>
-                      
-                     </article>
-                        <article class="experience__card">
-    <h2 class="experience__company"> ShayanBytes</h2>
-
-    <div class="experience__data">
-     <h3 class="experience__profession">AI ML Product Maneger</h3>
-     <span class="experience__date">04/05/26</span>
-     <p class="experience__description">
-      Short description about experience of Shayan Mondal
-     </p>
-    </div>
-
-   </article>
-      <article class="experience__card">
-    <h2 class="experience__company">Shayan Ventures</h2>
-
-    <div class="experience__data">
-     <h3 class="experience__profession">CEO</h3>
-     <span class="experience__date">05/09/26</span>
-     <p class="experience__description">
-      Short description about experience of Shayan Mondal
-     </p>
-    </div>
-
-   </article>
-                  </div>
-         </section>
-
-         <!--==================== CONTACT ====================-->
-         <section class="contact section" id="contact">
-             <h2 class="section__title">CONTACT ME</h2>
-            
-                <div class="contact__container container grid">
-                   <form action="" class="contact__form grid" id="contact-form">
-                       <div class="contact__group grid">
-                          <input type="text"name="user_name"placeholder="Names" required class="contact__input">
-                          <input type="email"name="user_email"placeholder="Email" required class="contact__input">
-                       </div>
-            <textarea name="user_message"placeholder="Message"class="contact__input contact__area"></textarea>
-            <button type="submit" class="button contact__button" >Send Messages</button>
-            
-                           <p class="contact__message" id="contact-message"></p>
-                   </form>
-                </div>
-         </section>
-      </main>
-
-      <!--==================== FOOTER ====================-->
-      <footer class="footer">
-         <div class="footer__container container grid">
-          <div class="footer__content grid">
-            <a href="#" class="footer__logo">Shayan</a>
-
-            <ul class="footer__links">
-              <li>
-                <a href="#home" class="footer__link">Home</a>
-              </li>
-
-              <li>
-                <a href="#projects" class="footer__link">Projects</a>
-              </li
-              >
-              <li>
-                <a href="#services" class="footer__link">Services</a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="footer__social">
-            <a href="https://www.instagram.com/"  target="_blank" class="footer__social-link">
-              <i class="ri-instagram-line"></i>
-            </a>
-            <a href="https://twitter.com/"  target="_blank" class="footer__social-link">
-              <i class="ri-twitter-x-line"></i>
-            </a>
-            
-          </div>
-         </div>
-
-         <span class="footer__copy">
-          &#169; All rights reserved by Shayan Ventures
-         </span>
-      </footer>
-
-      <!--========== SCROLL UP ==========-->
-        <a href="#" class="scrollup" id="scroll-up"> 
-          <i class="ri-arrow-up-line"></i>
-        </a>
-
-      <!--=============== SCROLLREVEAL ===============-->
-      <script src="scrollreveal.min.js">scroll</script>
-
-      <!--=============== EMAIL JS ===============-->
-      <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-      <!--=============== MAIN JS ===============-->
-      <script src="main.js"></script>
-   </body>
+  <footer class="footer">
+    <p>© <span data-year></span> Shayan Mondal</p>
+    <div><a href="https://github.com/ShayanBytes" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/shayan-mondal-1338bb340/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://x.com/fox_xrr?t=BqDTnxnvdofeoL_FIqnygA&s=09" target="_blank" rel="noreferrer">X ↗</a></div>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+  <div class="cursor" aria-hidden="true"><span>View</span></div>
+  <script src="main.js" defer></script>
+</body>
 </html>
