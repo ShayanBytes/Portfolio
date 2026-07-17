@@ -1,15 +1,32 @@
-# Portfolio
+# Shayan — Digital Universe
 
-My personal portfolio website showcasing projects, skills, and experience.
+An immersive multi-route portfolio built as a connected digital world rather than a conventional scrolling site.
 
-🌐 **View Website:** [Click Here](https://shayanbytes.github.io/Portfolios/)
+## Environments
 
-## Built With
+- `/home` — particle cosmos and kinetic manifesto
+- `/work` — cinematic project worlds
+- `/about` — interactive ASCII identity portrait
+- `/laboratory` — live GPU experiments
+- `/archive` — perspective-driven experience corridor
+- `/contact` — open signal
 
-- HTML
-- CSS
-- JavaScript
+## Stack
 
-## Author
+Vite · Three.js · GLSL · GSAP · Lenis · semantic HTML · responsive CSS
 
-GitHub: [ShayanBytes](https://github.com/ShayanBytes)
+## Run
+
+```bash
+npm install
+npm run dev
+```
+
+## Production
+
+```bash
+npm run build
+npm run preview
+```
+
+The renderer uses a single shared WebGL context, capped device pixel ratio, reduced particle count on mobile, visibility-aware rendering, reduced-motion fallbacks, and route-aware scene reuse.
