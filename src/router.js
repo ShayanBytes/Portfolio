@@ -2,11 +2,13 @@ import { identity, projects, routes } from './content.js';
 
 const nav = (active) => `
 <header class="nav" data-nav>
-  <a class="nav__brand mono" href="/home" data-link>SM<span class="nav__sig">—</span>ORGANISM</a>
+  <a class="nav__brand mono" href="/home" data-link aria-label="${identity.name} — home">
+    <span class="nav__signal" aria-hidden="true"></span><span>SM/26</span>
+  </a>
   <nav class="nav__links mono" aria-label="Primary">
-    ${routes.filter(r => r !== 'enter').map(r => `<a href="/${r}" data-link ${r === active ? 'aria-current="page"' : ''}>${r.toUpperCase()}</a>`).join('')}
+    ${routes.filter(r => r !== 'enter').map((r, i) => `<a href="/${r}" data-link ${r === active ? 'aria-current="page"' : ''}><span>0${i + 1}</span>${r.toUpperCase()}</a>`).join('')}
   </nav>
-  <a class="nav__gh mono" href="${identity.github}" target="_blank" rel="noreferrer">GITHUB&nbsp;↗</a>
+  <a class="nav__gh mono" href="${identity.github}" target="_blank" rel="noreferrer"><span class="nav__availability"></span>AVAILABLE&nbsp;↗</a>
 </header>`;
 
 const footer = () => `
@@ -44,6 +46,9 @@ ${nav('home')}
       <p class="eyebrow" data-blur>${identity.name.toUpperCase()} — DEVELOPER · SYSTEMS THINKER · BUILDER</p>
       <h1 class="hero__title" data-split="chars">I build working software from the inside out.</h1>
       <p class="hero__lede" data-blur>From distributed databases to full-stack products and Python tools — I learn by building real systems, then documenting how they work.</p>
+      <div class="hero__index mono" data-blur aria-label="Portfolio summary">
+        <span><b>04</b> SELECTED SYSTEMS</span><span><b>05</b> LANGUAGES</span><span><b>01</b> CURIOUS BUILDER</span>
+      </div>
       <div class="hero__actions" data-blur>
         <a class="btn mono" href="/work" data-link data-magnetic>VIEW WORK&nbsp;↗</a>
         <a class="link-arrow mono" href="/about" data-link>ABOUT ME&nbsp;→</a>
@@ -73,10 +78,12 @@ ${nav('home')}
       ${projects.map((p, i) => `
       <a class="pcard" href="${p.href}" target="_blank" rel="noreferrer" data-project="${p.id}" data-tilt>
         <span class="pcard__num mono" aria-hidden="true">0${i + 1}</span>
-        <span class="pcard__top mono"><span>${p.type.toUpperCase()}</span><span>↗</span></span>
+        <span class="pcard__top mono"><span>CASE / 0${i + 1}</span><span>↗</span></span>
+        <span class="pcard__visual" aria-hidden="true"><i></i><i></i><i></i><b>${p.name.slice(0, 2).toUpperCase()}</b></span>
         <span class="pcard__name">${p.name}</span>
+        <span class="pcard__type mono">${p.type.toUpperCase()}</span>
         <span class="pcard__desc">${p.description}</span>
-        <span class="pcard__open mono">OPEN REPOSITORY&nbsp;↗</span>
+        <span class="pcard__open mono">VIEW SYSTEM&nbsp;↗</span>
       </a>`).join('')}
       <a class="pcard pcard--more" href="${identity.github}" target="_blank" rel="noreferrer" data-magnetic>
         <span class="pcard__name">+ everything<br>else on GitHub</span>
@@ -109,6 +116,7 @@ ${nav('work')}
     <p class="eyebrow" data-blur>SELECTED REPOSITORIES — PULLED STRAIGHT FROM GITHUB</p>
     <h1 class="pagehead__title" data-split="chars">Real work.<br>No mockups.</h1>
     <p class="pagehead__sub" data-blur>Systems, products and tools that represent how I think and build. Hover a row — the organism becomes the project.</p>
+    <div class="pagehead__meta mono" data-blur><span>INDEX / 2026</span><span>04 RELEASED PROJECTS</span><span>GITHUB / SHAYANBYTES</span></div>
   </header>
   <section class="plist" aria-label="Projects">
     ${projects.map((p, i) => `
@@ -133,6 +141,7 @@ ${nav('about')}
   <header class="pagehead">
     <p class="eyebrow" data-blur>ABOUT THE OPERATOR</p>
     <h1 class="pagehead__title" data-split="chars">Curious enough<br>to go deeper.</h1>
+    <p class="pagehead__sub pagehead__sub--about" data-blur>A generalist by intention—moving between storage engines, product interfaces, and the systems connecting them.</p>
   </header>
   <section class="about">
     <aside class="about__side mono" data-blur>
@@ -162,9 +171,9 @@ ${nav('contact')}
     <h1 class="pagehead__title" data-split="chars">Let's build<br>something useful.</h1>
     <a class="contact__email" href="mailto:${identity.email}" data-magnetic data-blur>${identity.email}</a>
     <div class="contact__links mono" data-blur>
-      <a href="${identity.github}" target="_blank" rel="noreferrer">GITHUB&nbsp;↗</a>
-      <a href="${identity.linkedin}" target="_blank" rel="noreferrer">LINKEDIN&nbsp;↗</a>
-      <a href="mailto:${identity.email}">EMAIL&nbsp;↗</a>
+      <a href="${identity.github}" target="_blank" rel="noreferrer"><span>01 / CODE</span><b>GITHUB</b><i>↗</i></a>
+      <a href="${identity.linkedin}" target="_blank" rel="noreferrer"><span>02 / NETWORK</span><b>LINKEDIN</b><i>↗</i></a>
+      <a href="mailto:${identity.email}"><span>03 / DIRECT</span><b>EMAIL</b><i>↗</i></a>
     </div>
     <p class="contact__note mono" data-blur>BASED IN ${identity.location.toUpperCase()} — AVAILABLE FOR THOUGHTFUL COLLABORATIONS</p>
   </section>
