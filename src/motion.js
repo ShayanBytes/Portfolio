@@ -196,6 +196,7 @@ function journeyScene(scope) {
   const section = scope.querySelector('[data-journey]');
   const path = scope.querySelector('[data-journey-path]');
   const nodes = scope.querySelectorAll('[data-journey-node]');
+  const stages = [...scope.querySelectorAll('.journey__stages li')];
   if (!section || !path || !nodes.length) return;
 
   const length = path.getTotalLength();
@@ -208,7 +209,11 @@ function journeyScene(scope) {
       trigger: section,
       start: 'top 72%',
       end: 'bottom 70%',
-      scrub: 0.6
+      scrub: 0.6,
+      onUpdate: (self) => {
+        const active = Math.min(stages.length - 1, Math.floor(self.progress * stages.length));
+        stages.forEach((stage, index) => stage.classList.toggle('is-active', index === active));
+      }
     }
   });
   timeline.to(path, { strokeDashoffset: 0, duration: 1 }, 0);
