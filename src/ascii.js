@@ -12,10 +12,10 @@ import gsap from 'gsap';
 // grid below is what makes it read as high detail.
 const GLYPHS = '.';
 // Detail knob: pixel size of each dot cell. Smaller = finer detail but more
-// draws per frame. 6/5 (desktop/mobile) is a dense, smooth default; drop to 5/4
-// for more detail if your machine holds 60fps, raise to 8 if it stutters.
-const DOT_CELL = 6;
-const DOT_CELL_MOBILE = 5;
+// draws per frame. 5/4 (desktop/mobile) keeps the dots tightly packed while
+// retaining enough headroom for the procedural Earth and growing-tree fields.
+const DOT_CELL = 5;
+const DOT_CELL_MOBILE = 4;
 
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 const smooth = (a, b, x) => { x = clamp((x - a) / (b - a)); return x * x * (3 - 2 * x); };
@@ -26,6 +26,23 @@ const ring = (v, w = 0.1) => 1 - Math.abs(v) / w;
 const flicker = (x, y, f) => {
   const s = Math.sin(x * 127.1 + y * 311.7 + f * 74.7) * 43758.5453;
   return s - Math.floor(s);
+};
+const hash = (x, y) => flicker(x, y, 0);
+const noise = (x, y) => {
+  const ix = Math.floor(x), iy = Math.floor(y);
+  const fx = x - ix, fy = y - iy;
+  const ux = fx * fx * (3 - 2 * fx), uy = fy * fy * (3 - 2 * fy);
+  const a = hash(ix, iy), b = hash(ix + 1, iy);
+  const c = hash(ix, iy + 1), d = hash(ix + 1, iy + 1);
+  return (a * (1 - ux) + b * ux) * (1 - uy) + (c * (1 - ux) + d * ux) * uy;
+};
+const fbm = (x, y) => {
+  let value = 0, amplitude = 0.55;
+  for (let octave = 0; octave < 5; octave++) {
+    value += noise(x, y) * amplitude;
+    x = x * 2.03 + 17.1; y = y * 2.01 - 9.2; amplitude *= 0.48;
+  }
+  return value;
 };
 
 // ---------------------------------------------------------------------------
@@ -167,34 +184,57 @@ function shapeField(name, x, y, t) {
       return Math.sin(x * 7 + t * 1.4) + Math.cos(y * 8 - t * 0.9) - Math.hypot(x, y) * 0.65;
     case 'tree': {
       if (!TREE_FIELD) bakeTree();
-      // Sway grows toward the top (roots stay planted); higher branches drift more.
-      const up = Math.max(0, -y + 1) * 0.5;              // 0 at base → ~1 at crown
-      const sway = (Math.sin(t * 0.7) * 0.05 + Math.sin(t * 1.9 + 1.3) * 0.018) * up;
-      const rustle = Math.sin(x * 9 + t * 1.6) * Math.cos(y * 11 - t * 1.1) * 0.06 * up;
+      // An 18-second life cycle: roots wake, trunk rises, branches fork, then
+      // the canopy blooms. It softly seeds out before beginning again.
+      const phase = (t % 18) / 18;
+      const growth = smooth(0.03, 0.72, phase);
+      const reseed = 1 - smooth(0.9, 1, phase);
+      const height = clamp((0.92 - y) / 1.72);
+      const reveal = (1 - smooth(growth - 0.07, growth + 0.035, height)) * reseed;
+      const up = Math.max(0, -y + 1) * 0.5;
+      const sway = (Math.sin(t * 0.7) * 0.05 + Math.sin(t * 1.9 + 1.3) * 0.018) * up * growth;
+      const rustle = Math.sin(x * 9 + t * 1.6) * Math.cos(y * 11 - t * 1.1) * 0.05 * up * growth;
       const d = sampleTree(x - sway - rustle, y);
-      // Foliage shimmer so the canopy twinkles like leaves catching light.
-      const shimmer = d > 0 ? Math.sin(x * 24 + t * 2 + y * 18) * 0.12 : 0;
-      return d * 1.15 + shimmer;
+      const canopy = smooth(0.58, 0.86, growth);
+      const shimmer = d > 0 && y < 0.3
+        ? (Math.sin(x * 25 + t * 2.1 + y * 19) * 0.11 + fbm(x * 7 + t * 0.08, y * 7 - t * 0.05) * 0.16) * canopy
+        : 0;
+      // A faint root network keeps the base alive while the crown develops.
+      const roots = Math.max(0, 0.22 - Math.abs(y - 0.86) * 3 - Math.abs(Math.sin(x * 17)) * 0.13) * smooth(0.02, 0.2, growth);
+      return (d * 1.18 + shimmer) * reveal + roots * reseed;
     }
     case 'earth': {
-      // A rotating globe: solid sphere, continents scrolling with longitude,
-      // a glowing atmosphere rim, and shading toward the terminator.
-      const R = 0.7;
+      // Detailed rotating globe projected from a sphere. Five-octave terrain,
+      // drifting cloud bands, polar ice, city lights and atmosphere all move
+      // independently, creating real depth while preserving the single-dot glyph.
+      const R = 0.73;
       const r = Math.hypot(x, y);
-      const atmos = ring(r - R - 0.06, 0.05) * (0.55 + 0.25 * Math.sin(t * 1.5)); // halo
-      if (r > R) return atmos;                        // outside the disc → just glow
-      const z = Math.sqrt(Math.max(0, R * R - x * x - y * y)); // sphere depth
+      const limb = 1 - smooth(R - 0.08, R, r);
+      const atmos = Math.max(0, ring(r - R - 0.035, 0.065)) * (0.52 + 0.16 * Math.sin(t * 1.35));
+      const orbitAngle = t * 0.28;
+      const orbitY = y * Math.cos(0.42) + x * Math.sin(0.42);
+      const orbit = ring(Math.hypot(x * 0.72, orbitY * 1.9) - 0.79, 0.025) * (0.28 + 0.15 * Math.sin(orbitAngle));
+      if (r > R) return Math.max(atmos, orbit);
+
+      const z = Math.sqrt(Math.max(0, R * R - x * x - y * y));
       const lat = Math.asin(clamp(y / R, -1, 1));
-      const lon = Math.atan2(x, z) + t * 0.45;        // spin
-      // Layered sines fake continents/oceans; >0 is land.
-      const land =
-        Math.sin(lon * 3 + Math.sin(lat * 4) * 1.4) * 0.6 +
-        Math.sin(lon * 5 - lat * 3 + 1.7) * 0.4 +
-        Math.cos(lat * 6 + lon * 2) * 0.35;
-      const surface = 0.55 + (land > 0.15 ? 0.42 : 0.08);   // land brighter than sea
-      const light = clamp(0.35 + (x * 0.6 + -y * 0.5 + z * 0.7), 0, 1); // day/night
-      const grid = (Math.abs(Math.sin(lon * 6)) < 0.06 || Math.abs(Math.sin(lat * 6)) < 0.06) ? 0.12 : 0;
-      return surface * (0.35 + light * 0.85) + grid + atmos * 0.5;
+      const lon = Math.atan2(x, z) + t * 0.3;
+      const u = lon / Math.PI;
+      const v = lat / Math.PI;
+      const terrain = fbm(u * 4.4 + 8.7, v * 8.2 - 3.1)
+        + 0.16 * Math.sin(lon * 2.3 + Math.sin(lat * 3.7) * 1.8)
+        - 0.1 * Math.cos(lat * 9 - lon * 1.7);
+      const coast = 1 - smooth(0.51, 0.57, Math.abs(terrain - 0.585));
+      const land = smooth(0.53, 0.64, terrain);
+      const mountains = land * smooth(0.64, 0.82, fbm(u * 13 + 31, v * 17 - 12));
+      const clouds = smooth(0.61, 0.76, fbm(u * 7 + t * 0.055, v * 11 + Math.sin(lon * 2) * 0.22));
+      const polar = smooth(0.67, 0.93, Math.abs(Math.sin(lat))) * (0.65 + noise(u * 12, v * 14) * 0.35);
+      const light = clamp(0.16 + x * -0.7 + y * -0.32 + z * 1.05, 0, 1);
+      const cities = land * (1 - light) * smooth(0.77, 0.9, noise(u * 41, v * 43));
+      const oceanBands = 0.08 * Math.sin(lat * 31 + lon * 2 + t * 0.35);
+      const surface = 0.25 + light * (0.28 + land * 0.34 + mountains * 0.28 + polar * 0.3)
+        + coast * 0.17 + clouds * 0.28 + cities * 0.72 + oceanBands;
+      return surface * (0.55 + limb * 0.45) + atmos * 0.45;
     }
     case 'helix': {
       // DNA double helix: two phosphate strands crossing, with base-pair rungs.
@@ -274,7 +314,7 @@ export class Organism {
       this.cellH = cell;
       // Dot is drawn a touch larger than the cell so lit regions read as solid
       // shading, and centered in the cell rather than top-left aligned.
-      this.font = cell * 1.6;
+      this.font = cell * 1.82;
       this.cols = Math.ceil(innerWidth / this.cellW);
       this.rows = Math.ceil(innerHeight / this.cellH);
       this.canvas.width = innerWidth;
@@ -388,9 +428,19 @@ export class Organism {
           continue;
         }
         if (n < 0.07) continue;
-        const hue = h0 + (h1 - h0) * n + Math.sin(t * 0.5 + x * 0.018) * 7;
-        c.fillStyle = `hsl(${hue} 82% ${lum + n * 50}%)`;
-        c.globalAlpha = (0.1 + n * 0.82) * (0.55 + this.glow * 0.45);
+        // Layered, continuously shifting gradients: horizontal spectral drift,
+        // radial bloom and a slower diagonal tide. Every route keeps its own
+        // palette while the dots gain depth instead of becoming a flat fill.
+        const ux = x / this.cols, uy = y / this.rows;
+        const radial = Math.hypot(ux - 0.5, uy - 0.5);
+        const gradient =
+          Math.sin(ux * Math.PI * 2 + t * 0.23) * 0.42 +
+          Math.cos((ux + uy) * Math.PI * 2 - t * 0.17) * 0.3 +
+          Math.sin(radial * 13 - t * 0.31) * 0.28;
+        const hue = h0 + (h1 - h0) * n + gradient * 18;
+        const saturation = 74 + n * 20 + gradient * 5;
+        c.fillStyle = `hsl(${hue} ${saturation}% ${lum + n * 50}%)`;
+        c.globalAlpha = (0.08 + n * 0.86) * (0.55 + this.glow * 0.45);
         c.fillText(GLYPHS, x * this.cellW + hw, y * this.cellH + hh);
       }
     }
