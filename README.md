@@ -31,3 +31,34 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Deployment
+
+Hosted on GitHub Pages and deployed automatically by GitHub Actions
+(`.github/workflows/deploy.yml`). Every push to `main` builds the Vite app and
+publishes `dist/` — there is no need to build or commit `dist/` yourself.
+
+To ship an update:
+
+```bash
+git add .
+git commit -m "describe the change"
+git push origin main
+```
+
+Then watch the run at
+[Actions](https://github.com/ShayanBytes/Portfolio/actions) go green (~1–2 min)
+and hard-refresh the live site (`Ctrl+Shift+R`) to bypass the cache:
+
+```
+https://shayanbytes.github.io/Portfolio/
+```
+
+Notes:
+
+- Pages source must be set to **GitHub Actions** (Settings → Pages), not
+  "Deploy from a branch".
+- `vite.config.js` sets `base: '/Portfolio/'` for the project-pages subpath. If
+  the repo is renamed, update `base` to match or the live page will be blank.
+- If a push is rejected because the remote is ahead, run `git pull --no-edit`
+  then `git push origin main`.
