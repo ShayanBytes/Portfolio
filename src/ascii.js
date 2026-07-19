@@ -6,7 +6,16 @@ import gsap from 'gsap';
 // reacts to the pointer with ripples, and pulses when you click.
 // ---------------------------------------------------------------------------
 
-const GLYPHS = ' .·:;+=xX#%@';
+// Single dot glyph: the organism renders as a fine halftone dot-matrix rather
+// than chunky mixed-weight ASCII. All shading is carried by opacity + lightness
+// (see draw()), so one '.' at every lit cell is enough — and the tight cell
+// grid below is what makes it read as high detail.
+const GLYPHS = '.';
+// Detail knob: pixel size of each dot cell. Smaller = finer detail but more
+// draws per frame. 6/5 (desktop/mobile) is a dense, smooth default; drop to 5/4
+// for more detail if your machine holds 60fps, raise to 8 if it stutters.
+const DOT_CELL = 6;
+const DOT_CELL_MOBILE = 5;
 
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 const smooth = (a, b, x) => { x = clamp((x - a) / (b - a)); return x * x * (3 - 2 * x); };
@@ -259,16 +268,20 @@ export class Organism {
     this.glitchFrame = 0;
 
     this.resize = () => {
-      const font = innerWidth < 640 ? 8 : 11;
-      this.font = font;
-      this.cellW = font * 0.62;
-      this.cellH = font * 1.42;
+      // Tight, near-square dot grid — this density is what gives the fine detail.
+      const cell = innerWidth < 640 ? DOT_CELL_MOBILE : DOT_CELL;
+      this.cellW = cell;
+      this.cellH = cell;
+      // Dot is drawn a touch larger than the cell so lit regions read as solid
+      // shading, and centered in the cell rather than top-left aligned.
+      this.font = cell * 1.6;
       this.cols = Math.ceil(innerWidth / this.cellW);
       this.rows = Math.ceil(innerHeight / this.cellH);
       this.canvas.width = innerWidth;
       this.canvas.height = innerHeight;
-      this.ctx.font = `${font}px "JetBrains Mono", monospace`;
-      this.ctx.textBaseline = 'top';
+      this.ctx.font = `${this.font}px "JetBrains Mono", monospace`;
+      this.ctx.textAlign = 'center';
+      this.ctx.textBaseline = 'middle';
     };
     this.onPointer = (e) => { this.pointer.x = e.clientX / innerWidth; this.pointer.y = e.clientY / innerHeight; };
     this.onDown = (e) => this.pulse(e.clientX / innerWidth, e.clientY / innerHeight);
@@ -358,25 +371,27 @@ export class Organism {
     const glitch = this.morph < 1 ? Math.sin(this.morph * Math.PI) : 0; // peaks mid-morph
     const gf = Math.floor(t * 16);
     const lum = 26 + this.glow * 6;
+    // Cells are center-aligned (textAlign/Baseline set in resize), so draw at
+    // each cell's midpoint.
+    const hw = this.cellW / 2, hh = this.cellH / 2;
 
     for (let y = 0; y < this.rows; y++) {
       for (let x = 0; x < this.cols; x++) {
         let v = this.field(x, y, t);
         let n = clamp((v + 0.3) / 1.35);
-        // Glitch crossfade: random cells flash random glyphs while morphing.
+        // Glitch crossfade: random cells flash the dot at random brightness while morphing.
         if (glitch > 0.04 && flicker(x, y, gf) < glitch * 0.34) {
           n = 0.25 + flicker(y, x, gf + 9) * 0.75;
           c.fillStyle = `hsl(${h1 + flicker(x, y, gf + 3) * 60} 90% ${lum + n * 42}%)`;
           c.globalAlpha = 0.15 + n * 0.7;
-          c.fillText(GLYPHS[Math.floor(flicker(x + 7, y + 3, gf) * (GLYPHS.length - 1))], x * this.cellW, y * this.cellH);
+          c.fillText(GLYPHS, x * this.cellW + hw, y * this.cellH + hh);
           continue;
         }
         if (n < 0.07) continue;
-        const g = GLYPHS[Math.floor(n * (GLYPHS.length - 1))];
         const hue = h0 + (h1 - h0) * n + Math.sin(t * 0.5 + x * 0.018) * 7;
         c.fillStyle = `hsl(${hue} 82% ${lum + n * 50}%)`;
         c.globalAlpha = (0.1 + n * 0.82) * (0.55 + this.glow * 0.45);
-        c.fillText(g, x * this.cellW, y * this.cellH);
+        c.fillText(GLYPHS, x * this.cellW + hw, y * this.cellH + hh);
       }
     }
     c.globalAlpha = 1;
