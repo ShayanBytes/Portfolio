@@ -441,3 +441,60 @@ body.cursor-on .cursor__ring { width: 58px; height: 58px; border-color: var(--ac
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; }
 }
+
+
+/* ---------------------------------------------------- about journey */
+.journey {
+  position: relative;
+  width: min(100%, 1560px);
+  min-height: 120vh;
+  margin: 12vh auto 18vh;
+  padding: clamp(70px, 9vw, 140px) var(--pad);
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 72% 30%, color-mix(in srgb, var(--acc), transparent 88%), transparent 28%),
+    linear-gradient(180deg, rgba(14,14,17,.82), rgba(8,8,10,.94));
+}
+.journey::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .26;
+  background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 42px 42px; mask-image: linear-gradient(to bottom, transparent, #000 15%, #000 85%, transparent);
+}
+.journey__head { position: relative; z-index: 2; display: grid; grid-template-columns: .28fr 1fr; gap: 2rem 7vw; }
+.journey__head .eyebrow { padding-top: 10px; border-top: 1px solid var(--acc); }
+.journey__title { font: 500 clamp(54px, 7vw, 112px)/.88 var(--display); letter-spacing: -.055em; }
+.journey__intro { grid-column: 2; max-width: 550px; color: var(--mute); font-size: clamp(15px, 1.4vw, 20px); line-height: 1.55; }
+.journey__map { position: relative; z-index: 1; height: 610px; margin-top: clamp(70px, 9vw, 130px); }
+.journey__path { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.journey__path-base, .journey__path-progress { fill: none; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.journey__path-base { stroke: rgba(236,233,226,.16); }
+.journey__path-progress { stroke: var(--acc); filter: drop-shadow(0 0 7px color-mix(in srgb, var(--acc), transparent 45%)); }
+.journey__start { position: absolute; left: 0; top: 72px; display: flex; align-items: center; gap: 12px; color: var(--mute); font-size: 8px; line-height: 1.5; letter-spacing: .1em; }
+.journey__start i { width: 18px; height: 18px; border: 1px solid var(--acc); border-radius: 50%; box-shadow: 0 0 0 6px color-mix(in srgb, var(--acc), transparent 88%); }
+.journey__start i::after { content: ''; display: block; width: 6px; height: 6px; margin: 5px; border-radius: 50%; background: var(--acc); }
+.journey__steps { list-style: none; }
+.journey__step { position: absolute; width: min(260px, 22vw); padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: rgba(8,8,10,.72); backdrop-filter: blur(12px); transform-origin: 50% 100%; }
+.journey__step span { color: var(--acc); font-size: 8px; letter-spacing: .12em; }
+.journey__step h3 { margin: 26px 0 10px; font: 500 clamp(20px, 2vw, 30px)/1 var(--display); letter-spacing: -.025em; }
+.journey__step p { color: var(--mute); font-size: 12px; line-height: 1.55; }
+.journey__step--one { left: 16%; top: 125px; }
+.journey__step--two { left: 34%; top: 360px; }
+.journey__step--three { left: 55%; top: 35px; }
+.journey__step--four { left: 71%; top: 310px; }
+.journey__now { position: absolute; right: 0; top: 445px; width: 112px; height: 72px; padding: 12px; display: flex; align-items: flex-end; justify-content: space-between; border-radius: 18px; background: var(--acc); color: var(--ink); font-size: 8px; line-height: 1.4; }
+.journey__now b { width: 25px; height: 25px; display: grid; place-items: center; border-radius: 50%; background: var(--ink); color: var(--bone); }
+
+@media (max-width: 760px) {
+  .journey { min-height: 0; margin-block: 8vh 12vh; padding-inline: 20px; }
+  .journey__head { grid-template-columns: 1fr; }
+  .journey__intro { grid-column: 1; }
+  .journey__title { font-size: clamp(48px, 15vw, 72px); }
+  .journey__map { height: auto; margin-top: 70px; padding-left: 30px; }
+  .journey__path { left: 7px; width: 2px; height: 100%; }
+  .journey__path path { d: path('M 1 0 V 610'); }
+  .journey__start { position: relative; left: auto; top: auto; margin: 0 0 34px -30px; }
+  .journey__steps { display: grid; gap: 16px; }
+  .journey__step { position: relative; inset: auto; width: 100%; min-height: 190px; }
+  .journey__now { position: relative; right: auto; top: auto; width: 100%; height: 80px; margin-top: 18px; }
+}

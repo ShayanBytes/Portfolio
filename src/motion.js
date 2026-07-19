@@ -192,6 +192,32 @@ function homeScene(scope, organism, desktop) {
   }
 }
 
+function journeyScene(scope) {
+  const section = scope.querySelector('[data-journey]');
+  const path = scope.querySelector('[data-journey-path]');
+  const nodes = scope.querySelectorAll('[data-journey-node]');
+  if (!section || !path || !nodes.length) return;
+
+  const length = path.getTotalLength();
+  gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+  gsap.set(nodes, { opacity: 0.16, y: 24, scale: 0.94 });
+
+  const timeline = gsap.timeline({
+    defaults: { ease: 'none' },
+    scrollTrigger: {
+      trigger: section,
+      start: 'top 72%',
+      end: 'bottom 70%',
+      scrub: 0.6
+    }
+  });
+  timeline.to(path, { strokeDashoffset: 0, duration: 1 }, 0);
+  nodes.forEach((node, index) => {
+    const at = index / Math.max(1, nodes.length - 1) * 0.82;
+    timeline.to(node, { opacity: 1, y: 0, scale: 1, duration: 0.14, ease: 'power2.out' }, at);
+  });
+}
+
 function workScene(scope) {
   const rows = scope.querySelectorAll('.prow');
   if (!rows.length) return;
@@ -256,6 +282,7 @@ export function buildScene(route, organism) {
       navScene(document);
       if (route === 'home') homeScene(root, organism, desktop);
       if (route === 'work') workScene(root);
+      if (route === 'about') journeyScene(root);
       if (desktop) { magnets(root); tilts(root); }
       requestAnimationFrame(() => ScrollTrigger.refresh());
     }

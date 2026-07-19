@@ -150,6 +150,28 @@ ${nav('about')}
       </dl>
     </div>
   </section>
+
+  <section class="journey" data-journey aria-labelledby="journey-title">
+    <header class="journey__head">
+      <p class="eyebrow" data-blur>MY JOURNEY — AN OPEN-ENDED SYSTEM</p>
+      <h2 id="journey-title" class="journey__title" data-split="chars">Learning by<br>building deeper.</h2>
+      <p class="journey__intro" data-blur>Not a straight timeline. Each stage loops back, adds context, and changes how I approach the next problem.</p>
+    </header>
+    <div class="journey__map">
+      <svg class="journey__path" viewBox="0 0 1200 610" preserveAspectRatio="none" aria-hidden="true">
+        <path class="journey__path-base" d="M25 105 H190 Q250 105 250 165 V430 Q250 520 340 520 H480 Q565 520 565 435 V165 Q565 80 650 80 H770 Q850 80 850 160 V390 Q850 485 945 485 H1175" />
+        <path class="journey__path-progress" data-journey-path d="M25 105 H190 Q250 105 250 165 V430 Q250 520 340 520 H480 Q565 520 565 435 V165 Q565 80 650 80 H770 Q850 80 850 160 V390 Q850 485 945 485 H1175" />
+      </svg>
+      <div class="journey__start mono" data-journey-node><i></i><span>START WITH<br>CURIOSITY</span></div>
+      <ol class="journey__steps">
+        <li class="journey__step journey__step--one" data-journey-node><span class="mono">01 / FOUNDATION</span><h3>Learn the fundamentals</h3><p>Computer science, problem solving, and understanding what happens beneath abstractions.</p></li>
+        <li class="journey__step journey__step--two" data-journey-node><span class="mono">02 / PRACTICE</span><h3>Build the real thing</h3><p>Move across Java, TypeScript, Python, databases, interfaces, and complete products.</p></li>
+        <li class="journey__step journey__step--three" data-journey-node><span class="mono">03 / DEPTH</span><h3>Think in systems</h3><p>Study how storage, networks, tools, and user experience connect as one working system.</p></li>
+        <li class="journey__step journey__step--four" data-journey-node><span class="mono">04 / NOW</span><h3>Document and iterate</h3><p>Share the process, refine the decisions, and let every project inform the next one.</p></li>
+      </ol>
+      <div class="journey__now mono" data-journey-node><span>STILL<br>BUILDING</span><b>↗</b></div>
+    </div>
+  </section>
   ${footer()}
 </main>`;
 
