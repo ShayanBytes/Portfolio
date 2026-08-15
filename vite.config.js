@@ -1,2 +1,4 @@
 import {defineConfig} from 'vite';
-export default defineConfig({base:'/Portfolio/'});
+export default defineConfig({
+  base: '/',
+});
